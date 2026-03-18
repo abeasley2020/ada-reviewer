@@ -508,9 +508,154 @@ input[type="text"]:focus {
   font-size: .9rem; color: var(--red); line-height: 1.6;
 }
 
+/* GUIDANCE PANELS */
+.guidance-details {
+  margin-top: 10px;
+}
+.guidance-details summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: var(--white);
+  border: 1px solid #BFDBFE;
+  border-radius: 4px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+.guidance-details summary::-webkit-details-marker { display: none; }
+.guidance-details[open] summary { background: var(--blue-pale); }
+.guidance-body {
+  margin-top: 8px;
+  padding: 12px 16px;
+  background: var(--blue-pale);
+  border: 1px solid #BFDBFE;
+  border-radius: 6px;
+  font-size: .82rem;
+  line-height: 1.6;
+  color: var(--ink-light);
+}
+.guidance-what {
+  margin-bottom: 10px;
+  font-style: italic;
+  color: var(--ink);
+}
+.guidance-steps {
+  padding-left: 18px;
+  margin: 0 0 10px;
+}
+.guidance-steps li { margin-bottom: 4px; }
+.guidance-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--blue);
+  text-decoration: none;
+  letter-spacing: .05em;
+}
+.guidance-link:hover { text-decoration: underline; }
+
+/* PDF TAG STRUCTURE SUMMARY */
+.pdf-struct-summary {
+  background: var(--white);
+  border: 1.5px solid var(--rule);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+.pdf-struct-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.pdf-struct-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 8px;
+}
+.pdf-struct-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+  font-size: .82rem;
+  line-height: 1.45;
+}
+.pdf-struct-item.pass { background: var(--green-pale); border-color: var(--green-border); }
+.pdf-struct-item.fail { background: var(--red-pale); border-color: #FCDCDC; }
+.pdf-struct-item.warn { background: var(--amber-pale); border-color: var(--amber-border); }
+.pdf-struct-item.na  { background: #FAFAF8; }
+.pdf-struct-icon { font-size: .95rem; flex-shrink: 0; margin-top: 1px; }
+.pdf-struct-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 2px;
+}
+.pdf-struct-value { color: var(--ink); font-weight: 500; font-size: .82rem; }
+
+/* SCORM PACKAGE BANNER */
+.scorm-banner {
+  background: var(--white);
+  border: 1.5px solid var(--rule);
+  border-left: 4px solid #6366F1;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+.scorm-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.scorm-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.scorm-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .04em;
+}
+.scorm-meta strong { color: var(--ink); font-weight: 500; }
+.scorm-extract-errors {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: var(--amber-pale);
+  border: 1px solid var(--amber-border);
+  border-radius: 5px;
+  font-size: .8rem;
+  color: #7A5C1E;
+  line-height: 1.5;
+}
+.scorm-extract-errors ul { margin: 4px 0 0 16px; padding: 0; list-style: disc; }
+.scorm-extract-errors li { margin-bottom: 3px; }
+
 @media print {
   .topbar, .report-actions { display: none !important; }
   .report-layout { padding: 24px; }
+  .guidance-details[open] .guidance-body { display: block; }
 }
 @media (max-width: 600px) {
   .meta-row { grid-template-columns: 1fr; }
@@ -601,10 +746,10 @@ input[type="text"]:focus {
 
       <div class="tab-panel" id="tab-upload">
         <div class="drop-zone" id="drop-zone">
-          <input type="file" id="file-input" accept=".html,.htm,.txt,.docx,.pptx,.pdf,.tex,.srt,.vtt,.xml,.css,.js" />
+          <input type="file" id="file-input" accept=".html,.htm,.txt,.docx,.pptx,.pdf,.tex,.srt,.vtt,.xml,.css,.js,.zip" />
           <div class="drop-icon">&#128193;</div>
           <div class="drop-title">Drop your file here or click to browse</div>
-          <div class="drop-sub">Supports: <span>.html .htm .txt .docx .pptx .pdf .tex .srt .vtt .xml</span></div>
+          <div class="drop-sub">Supports: <span>.html .htm .txt .docx .pptx .pdf .tex .srt .vtt .xml .zip</span> &mdash; <span>.zip</span> auto-extracts SCORM packages</div>
           <div class="file-selected" id="file-selected">&#10003; File loaded</div>
         </div>
       </div>
@@ -651,9 +796,17 @@ input[type="text"]:focus {
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script>
 (function () {
   'use strict';
+
+  // PDF.js worker (CDN, same version)
+  if (typeof pdfjsLib !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+  }
 
   var PROXY_URL = 'https://anthropic-proxyandrebeasley2012workersdev.andrebeasley2012.workers.dev';
 
@@ -674,7 +827,9 @@ input[type="text"]:focus {
     contentTitle: '',
     timer: null,
     passphrase: '',
-    reviewerName: ''
+    reviewerName: '',
+    pdfStructure: null,  // populated by analyzePdfStructure() for PDF uploads
+    scormInfo: null      // populated by extractScormZip() for ZIP uploads
   };
 
   function el(id) { return document.getElementById(id); }
@@ -686,12 +841,15 @@ input[type="text"]:focus {
   }
 
   // FORMAT CHIPS
-  el('format-grid').querySelectorAll('.format-chip').forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      el('format-grid').querySelectorAll('.format-chip').forEach(function (c) { c.classList.remove('selected'); });
-      chip.classList.add('selected');
-      state.format = chip.getAttribute('data-format');
+  function setFormat(format) {
+    state.format = format;
+    el('format-grid').querySelectorAll('.format-chip').forEach(function (c) {
+      c.classList.toggle('selected', c.getAttribute('data-format') === format);
     });
+  }
+
+  el('format-grid').querySelectorAll('.format-chip').forEach(function (chip) {
+    chip.addEventListener('click', function () { setFormat(chip.getAttribute('data-format')); });
   });
 
   // INPUT TABS
@@ -731,20 +889,126 @@ input[type="text"]:focus {
   var MAX_CHARS = 60000; // ~15k tokens, safe buffer under 200k limit with system prompt
 
   function handleFile(file) {
-    // Size check: warn if file is likely too large (over 50MB is a risk)
+    state.pdfStructure = null;
+    state.scormInfo = null;
+    var fileEl = el('file-selected'); // single declaration; all branches share this reference
+
+    // Size check
     if (file.size > 52428800) {
-      var fileEl = el('file-selected');
       fileEl.style.color = '#C0392B';
       fileEl.textContent = '\u26a0 File too large (' + Math.round(file.size / 1024) + 'KB). Maximum file size is 50MB. Please copy and paste the text content instead using the "Paste content" tab.';
       fileEl.style.display = 'block';
       state.content = '';
       return;
     }
+
+    var isZip = /\.zip$/i.test(file.name) ||
+                file.type === 'application/zip' ||
+                file.type === 'application/x-zip-compressed';
+
+    // ZIP / SCORM path — extract with JSZip then evaluate the launch file
+    if (isZip) {
+      if (typeof JSZip === 'undefined') {
+        fileEl.style.color = '#C0392B';
+        fileEl.textContent = '\u26a0 ZIP support unavailable (JSZip failed to load). Paste the HTML content directly instead.';
+        fileEl.style.display = 'block';
+        return;
+      }
+      fileEl.style.color = 'var(--muted)';
+      fileEl.textContent = '\u23f3 Extracting SCORM package\u2026';
+      fileEl.style.display = 'block';
+      el('btn-submit').disabled = true;
+
+      var zipReader = new FileReader();
+      zipReader.onload = function (e) {
+        extractScormZip(e.target.result).then(function (scorm) {
+          // Fatal: could not get any HTML at all
+          if (!scorm.html && scorm.errors.length > 0) {
+            fileEl.style.color = '#C0392B';
+            fileEl.textContent = '\u26a0 ' + scorm.errors.join(' \u2014 ');
+            state.content = '';
+            el('btn-submit').disabled = false;
+            return;
+          }
+
+          state.content = scorm.html;
+          state.scormInfo = scorm;
+
+          // Auto-select the most appropriate format chip
+          if (/story(_html5)?\.html?$/i.test(scorm.launchFile || '')) {
+            setFormat('Articulate Storyline output');
+          } else if (/index(_lms)?\.html?$/i.test(scorm.launchFile || '') &&
+                     state.format === 'Brightspace HTML page') {
+            setFormat('Articulate Rise course');
+          }
+
+          var label = scorm.courseTitle
+            ? '\u201c' + scorm.courseTitle + '\u201d'
+            : file.name;
+          fileEl.style.color = scorm.errors.length > 0 ? '#D97706' : '#1D6B5E';
+          fileEl.textContent = '\u2713 ' + label +
+            (scorm.scormVersion ? ' \u00b7 ' + scorm.scormVersion : '') +
+            ' \u00b7 ' + (scorm.launchFile || 'unknown launch file') +
+            ' (' + scorm.fileCount + ' files)' +
+            (scorm.errors.length > 0
+              ? ' \u2014 \u26a0 ' + scorm.errors.length + ' extraction warning' + (scorm.errors.length !== 1 ? 's' : '')
+              : '');
+          el('btn-submit').disabled = false;
+        }).catch(function (err) {
+          fileEl.style.color = '#C0392B';
+          fileEl.textContent = '\u26a0 ZIP extraction failed: ' + (err.message || String(err));
+          state.content = '';
+          el('btn-submit').disabled = false;
+        });
+      };
+      zipReader.readAsArrayBuffer(file);
+      return;
+    }
+
+    var isPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
+
+    // PDF path — parse tag structure with PDF.js
+    if (isPdf && typeof pdfjsLib !== 'undefined') {
+      fileEl.style.color = 'var(--muted)';
+      fileEl.textContent = '\u23f3 Analyzing PDF tag structure\u2026';
+      fileEl.style.display = 'block';
+      el('btn-submit').disabled = true;
+
+      var pdfReader = new FileReader();
+      pdfReader.onload = function (e) {
+        analyzePdfStructure(e.target.result).then(function (pdfData) {
+          var text = (pdfData.text || '').slice(0, MAX_CHARS);
+          state.content = text;
+          state.pdfStructure = pdfData;
+
+          fileEl.style.color = pdfData.tagged ? '#1D6B5E' : '#D97706';
+          var tagBadge = pdfData.tagged ? '\u2713 Tagged' : '\u26a0 Not tagged';
+          fileEl.textContent = '\u2713 ' + file.name +
+            ' (' + Math.round(file.size / 1024) + 'KB' +
+            ', ' + pdfData.pageCount + ' page' + (pdfData.pageCount !== 1 ? 's' : '') +
+            ', ' + tagBadge + ')';
+
+          if (!text.trim()) {
+            fileEl.textContent += ' \u2014 no readable text found (image-based PDF?)';
+          }
+          el('btn-submit').disabled = false;
+        }).catch(function (err) {
+          fileEl.style.color = '#C0392B';
+          fileEl.textContent = '\u26a0 PDF analysis failed: ' + (err.message || err) +
+            '. Try pasting the text content instead.';
+          state.content = '';
+          el('btn-submit').disabled = false;
+        });
+      };
+      pdfReader.readAsArrayBuffer(file);
+      return;
+    }
+
+    // All other file types — read as plain text
     var reader = new FileReader();
     reader.onload = function (e) {
       var text = e.target.result;
       if (text.length > MAX_CHARS) {
-        var fileEl = el('file-selected');
         fileEl.style.color = '#C0392B';
         fileEl.textContent = '\u26a0 File content too long. Please paste the first ' + MAX_CHARS.toLocaleString() + ' characters using the "Paste content" tab instead.';
         fileEl.style.display = 'block';
@@ -752,12 +1016,473 @@ input[type="text"]:focus {
         return;
       }
       state.content = text;
-      var fileEl = el('file-selected');
       fileEl.style.color = '#1D6B5E';
       fileEl.textContent = '\u2713 ' + file.name + ' loaded (' + Math.round(file.size / 1024) + 'KB)';
       fileEl.style.display = 'block';
     };
+    reader.onerror = function () {
+      fileEl.style.color = '#C0392B';
+      fileEl.textContent = '\u26a0 Could not read \u201c' + file.name + '\u201d. Try pasting the content instead.';
+      fileEl.style.display = 'block';
+      state.content = '';
+    };
     reader.readAsText(file);
+  }
+
+  // SCORM ZIP EXTRACTION
+  // Uses JSZip to unpack the archive, parses imsmanifest.xml for the launch file,
+  // falls back to a priority-ordered filename search, then returns the HTML content
+  // alongside structured metadata for the prompt and report banner.
+
+  function extractScormZip(arrayBuffer) {
+    var result = {
+      html: '',
+      launchFile: null,
+      manifestFound: false,
+      scormVersion: null,
+      courseTitle: null,
+      fileCount: 0,
+      htmlFiles: [],
+      errors: []
+    };
+
+    return JSZip.loadAsync(arrayBuffer).then(function (zip) {
+      var allPaths = Object.keys(zip.files).filter(function (p) { return !zip.files[p].dir; });
+      result.fileCount = allPaths.length;
+
+      // Collect all HTML file paths for fallback search
+      result.htmlFiles = allPaths.filter(function (p) { return /\.html?$/i.test(p); });
+
+      // Locate imsmanifest.xml (may be at root or inside one subdirectory)
+      var manifestPath = null;
+      for (var i = 0; i < allPaths.length; i++) {
+        if (/(?:^|\/)imsmanifest\.xml$/i.test(allPaths[i])) { manifestPath = allPaths[i]; break; }
+      }
+
+      var basePath = '';
+      var manifestPromise = Promise.resolve();
+
+      if (manifestPath) {
+        result.manifestFound = true;
+        var lastSlash = manifestPath.lastIndexOf('/');
+        basePath = lastSlash >= 0 ? manifestPath.slice(0, lastSlash + 1) : '';
+
+        manifestPromise = zip.file(manifestPath).async('text').then(function (xml) {
+          var parsed = parseScormManifest(xml);
+          result.scormVersion = parsed.version;
+          result.courseTitle  = parsed.title;
+          if (parsed.launchFile) {
+            // Resolve relative to the manifest's directory
+            result.launchFile = basePath + parsed.launchFile;
+          }
+        }).catch(function (err) {
+          result.errors.push('Could not parse imsmanifest.xml: ' + (err.message || err));
+        });
+      } else {
+        result.errors.push('No imsmanifest.xml found \u2014 may not be a valid SCORM package.');
+      }
+
+      return manifestPromise.then(function () {
+        // Validate that the manifest-specified launch file actually exists
+        if (result.launchFile && !zip.files[result.launchFile]) {
+          // Try stripping the basePath prefix in case the manifest href was absolute-style
+          var stripped = result.launchFile.slice(basePath.length);
+          if (zip.files[stripped]) {
+            result.launchFile = stripped;
+          } else {
+            result.errors.push(
+              'Manifest launch file \u201c' + result.launchFile + '\u201d not found in ZIP. ' +
+              'Falling back to filename search.'
+            );
+            result.launchFile = null;
+          }
+        }
+
+        // Fallback: search by well-known SCORM launch filenames
+        if (!result.launchFile) {
+          result.launchFile = findScormLaunchFile(result.htmlFiles, basePath);
+        }
+
+        if (!result.launchFile) {
+          var listed = result.htmlFiles.slice(0, 6).join(', ') || '(none)';
+          result.errors.push(
+            'No HTML launch file found. HTML files in package: ' + listed + '.'
+          );
+          return result;
+        }
+
+        // Read the resolved launch file
+        return zip.file(result.launchFile).async('text').then(function (html) {
+          result.html = html.length > MAX_CHARS ? html.slice(0, MAX_CHARS) : html;
+          return result;
+        }).catch(function (err) {
+          result.errors.push('Could not read \u201c' + result.launchFile + '\u201d: ' + (err.message || err));
+          return result;
+        });
+      });
+    }).catch(function (err) {
+      result.errors.push('ZIP extraction failed: ' + (err.message || String(err)));
+      return result;
+    });
+  }
+
+  // Priority-ordered search for a SCORM launch HTML file.
+  // Storyline outputs story.html / story_html5.html; Rise outputs index.html.
+  function findScormLaunchFile(htmlFiles, basePath) {
+    var candidates = [
+      basePath + 'story.html',
+      basePath + 'story_html5.html',
+      basePath + 'index.html',
+      basePath + 'index_lms.html',
+      basePath + 'launch.html',
+      basePath + 'default.html'
+    ];
+    for (var i = 0; i < candidates.length; i++) {
+      if (htmlFiles.indexOf(candidates[i]) >= 0) return candidates[i];
+    }
+    // Fall back to any HTML file in the same directory as the manifest
+    for (var j = 0; j < htmlFiles.length; j++) {
+      var dir = htmlFiles[j].slice(0, htmlFiles[j].lastIndexOf('/') + 1);
+      if (dir === basePath) return htmlFiles[j];
+    }
+    // Last resort: first HTML file anywhere in the package
+    return htmlFiles.length > 0 ? htmlFiles[0] : null;
+  }
+
+  // Parse imsmanifest.xml using DOMParser to extract SCORM version,
+  // course title, and the launch file href from the first SCO resource.
+  function parseScormManifest(xmlText) {
+    var result = { version: null, title: null, launchFile: null };
+    try {
+      var doc = (new DOMParser()).parseFromString(xmlText, 'text/xml');
+
+      // SCORM version from <schemaversion>
+      var sv = doc.querySelector('schemaversion');
+      if (sv) {
+        var v = sv.textContent.trim();
+        if (/2004/i.test(v))     result.version = 'SCORM 2004';
+        else if (/1\.2/i.test(v)) result.version = 'SCORM 1.2';
+        else                      result.version = v;
+      }
+
+      // Course title from the first <organization> > <title>
+      var titleEl = doc.querySelector('organizations > organization > title');
+      if (titleEl) result.title = titleEl.textContent.trim();
+
+      // Launch file: first <resource> with an HTML href
+      // SCORM 1.2: type="webcontent" adlcp:scormType="sco"
+      // SCORM 2004: type="webcontent" adlcp:scormType="sco" (same pattern)
+      var resources = doc.querySelectorAll('resources > resource');
+      for (var i = 0; i < resources.length; i++) {
+        var href = resources[i].getAttribute('href');
+        if (href) {
+          // Strip query strings (Storyline appends ?v=...)
+          result.launchFile = href.split('?')[0];
+          break;
+        }
+      }
+    } catch (e) { /* malformed XML — caller handles the null fields */ }
+    return result;
+  }
+
+  // Serialize SCORM metadata into a plain-text block prepended to the AI prompt.
+  function formatScormInfoForPrompt(s) {
+    var lines = ['--- SCORM PACKAGE CONTEXT ---'];
+    lines.push('SCORM Version:  ' + (s.scormVersion || 'Not detected'));
+    lines.push('Course Title:   ' + (s.courseTitle  || 'Not found in manifest'));
+    lines.push('Launch File:    ' + (s.launchFile   || 'Not determined'));
+    lines.push('Manifest Found: ' + (s.manifestFound ? 'Yes' : 'No'));
+    lines.push('Total Files:    ' + s.fileCount);
+    if (s.errors.length > 0) {
+      lines.push('Extraction Notes:');
+      s.errors.forEach(function (e) { lines.push('  \u2014 ' + e); });
+    }
+    lines.push('--- END SCORM PACKAGE CONTEXT ---');
+    return lines.join('\n');
+  }
+
+  // Render a compact info banner shown at the top of the report for ZIP uploads.
+  function renderScormBanner(s) {
+    function meta(label, value) {
+      return '<span class="scorm-meta"><strong>' + label + ':</strong> ' + value + '</span>';
+    }
+    var metaItems = [];
+    if (s.scormVersion) metaItems.push(meta('Version', s.scormVersion));
+    if (s.courseTitle)  metaItems.push(meta('Title',   s.courseTitle));
+    if (s.launchFile)   metaItems.push(meta('Launch file', s.launchFile));
+    metaItems.push(meta('Files in package', s.fileCount));
+
+    var errHtml = '';
+    if (s.errors.length > 0) {
+      errHtml = '<div class="scorm-extract-errors">' +
+        '<strong>Extraction warnings</strong>' +
+        '<ul>' + s.errors.map(function (e) { return '<li>' + e + '</li>'; }).join('') + '</ul>' +
+        '</div>';
+    }
+
+    return '<div class="scorm-banner">' +
+      '<div class="scorm-eyebrow">SCORM Package \u00b7 Extracted for accessibility review</div>' +
+      '<div class="scorm-meta-row">' + metaItems.join('') + '</div>' +
+      errHtml +
+      '</div>';
+  }
+
+  // PDF TAG STRUCTURE ANALYSIS
+  // Uses PDF.js to parse the document's internal tag tree and extract structured
+  // accessibility data: tagged status, language, heading hierarchy, figure alt text,
+  // table header presence, and reading-order indicators.
+
+  function analyzePdfStructure(arrayBuffer) {
+    var result = {
+      tagged: false,
+      language: null,
+      title: null,
+      pageCount: 0,
+      headings: [],            // [{role, text, page}]
+      figures: { total: 0, withAlt: 0, missing: [] },   // missing: [{page}]
+      tables:  { total: 0, withHeaders: 0, withoutHeaders: 0 },
+      suspects: false,         // PDF "Suspects" flag — auto-tagging may be unreliable
+      text: '',
+      error: null
+    };
+
+    return pdfjsLib.getDocument({ data: arrayBuffer }).promise.then(function (pdf) {
+      result.pageCount = pdf.numPages;
+
+      // Metadata: language and title
+      var metaPromise = pdf.getMetadata().then(function (meta) {
+        var info = (meta && meta.info) || {};
+        result.language = info.Language || null;
+        result.title    = info.Title    || null;
+      }).catch(function () {});
+
+      // Mark info: tagged status and suspects flag
+      var markPromise = pdf.getMarkInfo().then(function (markInfo) {
+        if (markInfo) {
+          result.tagged   = markInfo.Marked   === true;
+          result.suspects = markInfo.Suspects === true;
+        }
+      }).catch(function () { result.tagged = false; });
+
+      return Promise.all([metaPromise, markPromise]).then(function () {
+        // Process pages sequentially to stay within memory limits
+        var pageNums = [];
+        for (var i = 1; i <= Math.min(pdf.numPages, 40); i++) { pageNums.push(i); }
+
+        return pageNums.reduce(function (chain, pageNum) {
+          return chain.then(function () {
+            return pdf.getPage(pageNum).then(function (page) {
+              // Extract text
+              return page.getTextContent().then(function (tc) {
+                result.text += tc.items.map(function (it) { return it.str || ''; }).join(' ') + '\n';
+              }).then(function () {
+                // Walk structure tree (only meaningful if tagged)
+                if (!result.tagged) return;
+                return page.getStructTree().then(function (tree) {
+                  if (tree) walkStructTree(tree, result, pageNum);
+                }).catch(function () {});
+              });
+            });
+          });
+        }, Promise.resolve());
+      });
+    }).then(function () {
+      return result;
+    }).catch(function (err) {
+      result.error = err.message || String(err);
+      return result;
+    });
+  }
+
+  function walkStructTree(node, result, pageNum) {
+    if (!node) return;
+    var role = (node.role || '').toUpperCase();
+
+    // Heading tags: H, H1–H6, Title
+    if (role === 'H' || /^H[1-6]$/.test(role) || role === 'TITLE') {
+      result.headings.push({ role: node.role || 'H', text: getNodeText(node).slice(0, 80), page: pageNum });
+    }
+
+    // Figure/image tags — check for alt text
+    if (role === 'FIGURE') {
+      result.figures.total++;
+      var alt = (node.alt || '').trim();
+      if (alt.length > 0) {
+        result.figures.withAlt++;
+      } else {
+        result.figures.missing.push({ page: pageNum, context: getNodeText(node).slice(0, 40) });
+      }
+    }
+
+    // Table tags — check for TH header cells
+    if (role === 'TABLE') {
+      result.tables.total++;
+      if (nodeContainsRole(node, 'TH')) {
+        result.tables.withHeaders++;
+      } else {
+        result.tables.withoutHeaders++;
+      }
+    }
+
+    if (node.children) {
+      for (var i = 0; i < node.children.length; i++) {
+        walkStructTree(node.children[i], result, pageNum);
+      }
+    }
+  }
+
+  function getNodeText(node) {
+    if (!node) return '';
+    if (typeof node.str === 'string') return node.str;
+    var out = '';
+    if (node.children) {
+      for (var i = 0; i < node.children.length; i++) { out += getNodeText(node.children[i]); }
+    }
+    return out;
+  }
+
+  function nodeContainsRole(node, targetRole) {
+    if (!node) return false;
+    if ((node.role || '').toUpperCase() === targetRole.toUpperCase()) return true;
+    if (node.children) {
+      for (var i = 0; i < node.children.length; i++) {
+        if (nodeContainsRole(node.children[i], targetRole)) return true;
+      }
+    }
+    return false;
+  }
+
+  // Build a plain-text pre-analysis block to inject into the AI prompt
+  function formatPdfStructureForPrompt(s) {
+    var lines = ['--- PDF TAG STRUCTURE PRE-ANALYSIS (auto-extracted from PDF internals) ---'];
+    lines.push('Pages: ' + s.pageCount);
+    lines.push('Tagged PDF (/MarkInfo Marked): ' + (s.tagged ? 'YES \u2713' : 'NO \u2717  \u2014 CRITICAL: no accessibility structure exists'));
+    lines.push('Document Language (/Lang):     ' + (s.language ? s.language + ' \u2713' : 'NOT SET \u2717'));
+    lines.push('Document Title:               ' + (s.title    ? '"' + s.title + '"' : 'NOT SET'));
+
+    if (s.tagged) {
+      if (s.headings.length === 0) {
+        lines.push('Heading Tags: NONE FOUND \u2717');
+      } else {
+        var counts = {};
+        s.headings.forEach(function (h) { counts[h.role] = (counts[h.role] || 0) + 1; });
+        lines.push('Heading Tags: ' + Object.keys(counts).map(function (k) { return k + '\xd7' + counts[k]; }).join(', ') + ' (' + s.headings.length + ' total)');
+        // Detect level skips
+        var levels = s.headings.map(function (h) { return parseInt((h.role || '1').replace(/\D/g, '')) || 1; });
+        for (var i = 1; i < levels.length; i++) {
+          if (levels[i] - levels[i - 1] > 1) {
+            lines.push('  \u26a0 Heading level skip: H' + levels[i-1] + ' \u2192 H' + levels[i] + ' (page ' + s.headings[i].page + ')');
+            break;
+          }
+        }
+      }
+
+      if (s.figures.total === 0) {
+        lines.push('Figures/Images: None detected in structure tree');
+      } else {
+        lines.push('Figures/Images: ' + s.figures.total + ' total \u2014 ' +
+          s.figures.withAlt + ' with alt text, ' +
+          s.figures.missing.length + ' missing alt text' +
+          (s.figures.missing.length > 0 ? ' \u2717' : ' \u2713'));
+        s.figures.missing.forEach(function (f) {
+          lines.push('  \u2014 Figure missing alt text on page ' + f.page + (f.context ? ' (near: "' + f.context + '")' : ''));
+        });
+      }
+
+      if (s.tables.total === 0) {
+        lines.push('Tables: None detected in structure tree');
+      } else {
+        lines.push('Tables: ' + s.tables.total + ' total \u2014 ' +
+          s.tables.withHeaders + ' with TH headers, ' +
+          s.tables.withoutHeaders + ' without TH headers' +
+          (s.tables.withoutHeaders > 0 ? ' \u2717' : ' \u2713'));
+      }
+
+      if (s.suspects) {
+        lines.push('Suspects Flag: YES \u26a0 \u2014 PDF was auto-tagged; structure may be unreliable');
+      }
+    } else {
+      lines.push('Heading Tags:     N/A (untagged PDF)');
+      lines.push('Figures/Images:   N/A (untagged PDF \u2014 alt text cannot be verified)');
+      lines.push('Tables:           N/A (untagged PDF \u2014 header associations cannot be verified)');
+    }
+
+    if (s.error) lines.push('Parser note: ' + s.error);
+    lines.push('--- END PDF TAG STRUCTURE PRE-ANALYSIS ---');
+    return lines.join('\n');
+  }
+
+  // Render an at-a-glance PDF structure card at the top of the report
+  function renderPdfStructureSummary(s) {
+    function card(cls, icon, label, value) {
+      return '<div class="pdf-struct-item ' + cls + '">' +
+        '<span class="pdf-struct-icon">' + icon + '</span>' +
+        '<div><span class="pdf-struct-label">' + label + '</span>' +
+        '<span class="pdf-struct-value">' + value + '</span></div></div>';
+    }
+
+    var items = [];
+
+    items.push(card(
+      s.tagged ? 'pass' : 'fail',
+      s.tagged ? '&#10003;' : '&#10007;',
+      'Tag Structure',
+      s.tagged ? 'Tagged PDF' : 'Untagged \u2014 no structure'
+    ));
+
+    items.push(card(
+      s.language ? 'pass' : 'fail',
+      s.language ? '&#10003;' : '&#10007;',
+      'Document Language',
+      s.language || 'Not set'
+    ));
+
+    items.push(card(
+      s.title ? 'pass' : 'warn',
+      s.title ? '&#10003;' : '!',
+      'Document Title',
+      s.title ? (s.title.length > 28 ? s.title.slice(0, 28) + '\u2026' : s.title) : 'Not set'
+    ));
+
+    if (s.tagged) {
+      items.push(card(
+        s.headings.length > 0 ? 'pass' : 'fail',
+        s.headings.length > 0 ? '&#10003;' : '&#10007;',
+        'Heading Tags',
+        s.headings.length > 0 ? s.headings.length + ' tagged' : 'None found'
+      ));
+
+      if (s.figures.total > 0) {
+        items.push(card(
+          s.figures.missing.length === 0 ? 'pass' : (s.figures.withAlt > 0 ? 'warn' : 'fail'),
+          s.figures.missing.length === 0 ? '&#10003;' : '&#10007;',
+          'Figure Alt Text',
+          s.figures.withAlt + '\u2009/\u2009' + s.figures.total + ' have alt text'
+        ));
+      }
+
+      if (s.tables.total > 0) {
+        items.push(card(
+          s.tables.withoutHeaders === 0 ? 'pass' : 'fail',
+          s.tables.withoutHeaders === 0 ? '&#10003;' : '&#10007;',
+          'Table Headers',
+          s.tables.withoutHeaders === 0
+            ? 'All tables have TH'
+            : s.tables.withoutHeaders + '\u2009/\u2009' + s.tables.total + ' missing TH'
+        ));
+      }
+
+      if (s.suspects) {
+        items.push(card('warn', '!', 'Auto-tag Quality', 'Suspects flag set'));
+      }
+    }
+
+    return '<div class="pdf-struct-summary">' +
+      '<div class="pdf-struct-eyebrow">PDF Tag Structure \u00b7 ' +
+      s.pageCount + ' page' + (s.pageCount !== 1 ? 's' : '') +
+      ' \u00b7 Extracted from document internals</div>' +
+      '<div class="pdf-struct-grid">' + items.join('') + '</div>' +
+      '</div>';
   }
 
   // SUBMIT
@@ -795,7 +1520,33 @@ input[type="text"]:focus {
 
   // SYSTEM PROMPT
   function buildSystemPrompt() {
-    return 'You are an accessibility auditor reviewing course content for WCAG 2.1 AA compliance at Purdue University. Produce a structured, actionable report for instructional designers.\n\nFocus on issues native checkers miss: alt text quality not just presence, sensory-only instructions ("click the red button"), heading sequence logic, non-descriptive links, color as sole information carrier, table header association, caption completeness, ARIA misuse in HTML, Brightspace inline styles, Storyline focus order, LaTeX math accessibility.\n\nOutput these sections in markdown:\n\n## Overall Assessment\n2-3 sentences: status, critical issues, risk level (High/Medium/Low) for April 2026 deadline.\n\n## WCAG 2.1 AA Scorecard\nTable: Principle | Criteria Checked | Status | Notes\nPrinciples: Perceivable (1.x) | Operable (2.x) | Understandable (3.x) | Robust (4.x)\nStatus: PASS | PARTIAL | FAIL | N/A\n\n## Critical Violations\nBullet list. Each item: [WCAG criterion] - [specific failure in this content] - [plain English fix]\n\n## Warnings\nBullet list. Issues that may fail depending on context.\n\n## What Passes\nBullet list. Keep brief.\n\n## Remediation Punch List\nNumbered list by severity. Each item:\nIssue: [what is wrong and where]\nWhy it matters: [impact on students with disabilities]\nHow to fix it: [plain English steps. Write replacement text as: Change to: "new text"]\n\n## Format-Specific Notes\nIssues specific to the submitted format.\n\nRULES: No code blocks. No backticks. No HTML tags. Plain English only. Written for instructional designers, not developers.';
+    var base = 'You are an accessibility auditor reviewing course content for WCAG 2.1 AA compliance at Purdue University. Produce a structured, actionable report for instructional designers.\n\nFocus on issues native checkers miss: alt text quality not just presence, sensory-only instructions ("click the red button"), heading sequence logic, non-descriptive links, color as sole information carrier, table header association, caption completeness, ARIA misuse in HTML, Brightspace inline styles, Storyline focus order, LaTeX math accessibility.\n\nOutput these sections in markdown:\n\n## Overall Assessment\n2-3 sentences: status, critical issues, risk level (High/Medium/Low) for April 2026 deadline.\n\n## WCAG 2.1 AA Scorecard\nTable: Principle | Criteria Checked | Status | Notes\nPrinciples: Perceivable (1.x) | Operable (2.x) | Understandable (3.x) | Robust (4.x)\nStatus: PASS | PARTIAL | FAIL | N/A\n\n## Critical Violations\nBullet list. Each item: [WCAG criterion] - [specific failure in this content] - [plain English fix]\n\n## Warnings\nBullet list. Issues that may fail depending on context.\n\n## What Passes\nBullet list. Keep brief.\n\n## Remediation Punch List\nNumbered list by severity. Each item:\nIssue: [what is wrong and where]\nWhy it matters: [impact on students with disabilities]\nHow to fix it: [plain English steps. Write replacement text as: Change to: "new text"]\n\n## Format-Specific Notes\nIssues specific to the submitted format.\n\nRULES: No code blocks. No backticks. No HTML tags. Plain English only. Written for instructional designers, not developers.';
+
+    if (state.scormInfo) {
+      var tool = /story(_html5)?\.html?$/i.test(state.scormInfo.launchFile || '')
+        ? 'Articulate Storyline'
+        : /index(_lms)?\.html?$/i.test(state.scormInfo.launchFile || '')
+          ? 'Articulate Rise'
+          : 'an e-learning authoring tool';
+      base += '\n\nSCORM CONTEXT: The content is the HTML launch file extracted from a SCORM package authored in ' + tool + '. ' +
+        (state.scormInfo.scormVersion ? 'Package standard: ' + state.scormInfo.scormVersion + '. ' : '') +
+        'In addition to standard WCAG checks, look specifically for:\n' +
+        '- Slide or screen titles: every slide/screen must have a descriptive accessible name\n' +
+        '- Alt text on all graphic layers, characters, and background images (Storyline embeds these as <img> tags)\n' +
+        '- Focus order: tab sequence through interactive objects must be logical (set in Storyline Focus Order panel)\n' +
+        '- Keyboard traps: drag-and-drop, slider, and matching interactions must have keyboard-accessible equivalents\n' +
+        '- Custom button ARIA labels: Storyline buttons often have generic names like "Button 1" \u2014 flag any found\n' +
+        '- Quiz feedback accessibility: correct/incorrect layers must be reachable by keyboard and announced to screen readers\n' +
+        '- Color contrast on slide text over background images (common Storyline failure)\n' +
+        '- For Rise: heading hierarchy across lessons, embedded media captions, and card/accordion keyboard operability\n' +
+        'Reference the SCORM PACKAGE CONTEXT block in the user prompt for extraction metadata.';
+    }
+
+    if (state.format === 'PDF document') {
+      base += '\n\nPDF TAG STRUCTURE: The user prompt contains a PDF Tag Structure Pre-Analysis block extracted from the document\'s internal tag tree. Treat every line marked \u2717 as a confirmed WCAG violation and every line marked \u26a0 as a warning. Map findings to WCAG criteria and report them in the appropriate sections:\n- Untagged PDF \u2192 WCAG 1.3.1, 1.3.2 (Critical \u2014 no accessibility structure whatsoever)\n- Language not set \u2192 WCAG 3.1.1\n- No heading tags found \u2192 WCAG 1.3.1, 2.4.6\n- Heading level skip (e.g., H1 \u2192 H3) \u2192 WCAG 1.3.1, 2.4.6\n- Figure missing alt text (list each page) \u2192 WCAG 1.1.1\n- Table without TH headers \u2192 WCAG 1.3.1\n- Suspects flag set \u2192 warn that auto-tagged structure may be unreliable and needs manual verification in Acrobat\n\nFor all PDF remediation steps, reference Adobe Acrobat Pro tools specifically: Tags panel, Reading Order tool (View > Tools > Accessibility), Table Editor, and File > Properties > Description/Advanced for language and title. If the PDF is untagged, the first fix must be to add tags using Acrobat\'s Make Accessible wizard or by reexporting from the source application with accessibility settings enabled.';
+    }
+
+    return base;
   }
 
   // API CALL
@@ -806,8 +1557,22 @@ input[type="text"]:focus {
 
     var userPrompt = 'Please review the following ' + state.format + ' content for WCAG 2.1 AA accessibility compliance.\n\n' +
       (state.courseName ? 'Course: ' + state.courseName + '\n' : '') +
-      (state.contentTitle ? 'Content/Module: ' + state.contentTitle + '\n' : '') +
-      '\n--- CONTENT START ---\n' + state.content + '\n--- CONTENT END ---';
+      (state.contentTitle ? 'Content/Module: ' + state.contentTitle + '\n' : '');
+
+    // Prepend SCORM package context (if a ZIP was uploaded)
+    if (state.scormInfo) {
+      userPrompt += '\n' + formatScormInfoForPrompt(state.scormInfo) + '\n';
+    }
+
+    // Prepend PDF structure pre-analysis so Claude sees hard facts before the text
+    if (state.pdfStructure) {
+      userPrompt += '\n' + formatPdfStructureForPrompt(state.pdfStructure) + '\n';
+    }
+
+    userPrompt += '\n--- CONTENT START ---\n' + state.content + '\n--- CONTENT END ---';
+
+    // PDF and SCORM reviews have more surface area — increase output budget
+    var maxTokens = (state.pdfStructure || state.scormInfo) ? 3000 : 2000;
 
     fetch(PROXY_URL, {
       method: 'POST',
@@ -820,7 +1585,7 @@ input[type="text"]:focus {
         contentTitle: state.contentTitle,
         format: state.format,
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 2000,
+        max_tokens: maxTokens,
         system: buildSystemPrompt(),
         messages: [{ role: 'user', content: userPrompt }]
       })
@@ -843,6 +1608,456 @@ input[type="text"]:focus {
       el('error-msg').textContent = err.message || 'The review could not be completed. Please try again.';
       el('topbar-label').textContent = 'WCAG 2.1 AA';
       showScreen('error');
+    });
+  }
+
+  // WCAG REMEDIATION GUIDANCE
+  // Each key is a WCAG 2.1 criterion number.
+  // Fields: title, explanation (plain language), steps (array), resource (URL).
+  var WCAG_GUIDANCE = {
+    '1.1.1': {
+      title: 'Non-text Content',
+      explanation: 'Every image, chart, icon, and non-text element needs a text alternative so screen reader users understand what it conveys.',
+      steps: [
+        'Decide the purpose: informative, decorative, functional, or a complex chart.',
+        'Informative image — write alt text describing the meaning, not appearance: alt="Bar chart showing enrollment rising 40% from 2020–2024".',
+        'Decorative image — use an empty alt attribute (alt="") so screen readers skip it.',
+        'Functional image (button/link icon) — describe the action: alt="Submit form".',
+        'Complex chart or diagram — provide a short alt plus a longer text description in a nearby caption or paragraph.',
+        'Never start alt text with "Image of" or "Picture of" — screen readers already announce it as an image.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html'
+    },
+    '1.2.2': {
+      title: 'Captions (Prerecorded)',
+      explanation: 'All prerecorded video with audio must have synchronized captions so Deaf and hard-of-hearing students can access the spoken content.',
+      steps: [
+        'Generate auto-captions in Kaltura, YouTube, or your video platform.',
+        'Manually review and correct every line — auto-captions average 80% accuracy, which does not meet WCAG.',
+        'Confirm captions are synchronized (appear and disappear with the speech).',
+        'Include speaker identification when multiple people speak, e.g., [Instructor] or [Student].',
+        'Caption non-speech audio that carries meaning, e.g., [Alarm sounds] or [Applause].',
+        'Export the corrected .srt or .vtt file and re-upload it to the platform.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded.html'
+    },
+    '1.2.3': {
+      title: 'Audio Description or Media Alternative',
+      explanation: 'Videos must convey all visual information through audio description or a full text transcript, so blind students do not miss on-screen content.',
+      steps: [
+        'Watch the video and note all visual information not described in the narration: text on slides, diagrams, demonstrations.',
+        'Option A — Audio description: add a narrated track describing visual content during natural pauses.',
+        'Option B — Text transcript: write a full script including both spoken dialogue and descriptions of all meaningful visual content.',
+        'Provide the transcript as a linked document on the same page as the video.',
+        'In Kaltura: use the "Add Audio Description" feature or upload an extended description track.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/audio-description-or-media-alternative-prerecorded.html'
+    },
+    '1.2.4': {
+      title: 'Captions (Live)',
+      explanation: 'Live audio content such as synchronous class sessions must have real-time captions.',
+      steps: [
+        'Enable live captioning in Zoom, Teams, or Webex via built-in auto-caption settings.',
+        'For higher accuracy, arrange a professional CART (Communication Access Realtime Translation) captioner for live sessions.',
+        'Inform students at the start of each session how to enable or view captions.',
+        'After the session, correct the auto-generated transcript and post it in Brightspace.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/captions-live.html'
+    },
+    '1.3.1': {
+      title: 'Info and Relationships',
+      explanation: 'Structure and relationships conveyed visually — headings, lists, tables, emphasis — must also be represented in code so assistive technology can interpret them.',
+      steps: [
+        'Use proper heading tags (H1–H6), never bold text styled to look like a heading.',
+        'Use real list markup for bulleted or numbered content instead of manual dashes or typed numbers.',
+        'Data tables must use <th> header cells, not just bold or centered text.',
+        'Use <strong> and <em> tags for emphasis rather than color or font size alone.',
+        'In Brightspace: avoid pasting from Word — it inserts inline styles instead of semantic tags. Use the source editor to clean up.',
+        'Verify structure by running the content through a screen reader or the built-in accessibility checker.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html'
+    },
+    '1.3.2': {
+      title: 'Meaningful Sequence',
+      explanation: 'The reading order of content must make sense when linearized — screen readers read content in DOM order, not visual order.',
+      steps: [
+        'Check that the HTML source order matches the intended reading order.',
+        'Avoid using CSS absolute positioning or floats to visually rearrange content that has a logical sequence.',
+        'In multi-column layouts, confirm focus flows left-to-right, top-to-bottom.',
+        'In Storyline: open the Focus Order panel (Home > Accessibility > Focus Order) and reorder objects to match the logical sequence.',
+        'Test by tabbing through the page without a mouse to verify the order makes sense.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html'
+    },
+    '1.3.3': {
+      title: 'Sensory Characteristics',
+      explanation: 'Instructions cannot rely solely on shape, color, size, location, or sound — students who are blind, colorblind, or Deaf must be able to follow them.',
+      steps: [
+        'Find all instructions that reference visual properties: "click the red button," "see the diagram on the left," "as shown above."',
+        'Rewrite to include text labels alongside sensory cues: "click the Submit button (highlighted in red)" or "see Figure 2 below."',
+        'For steps referencing audio cues: provide a visual or text equivalent as well.',
+        'Review every numbered step, callout box, and navigation instruction for sensory-only language.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics.html'
+    },
+    '1.4.1': {
+      title: 'Use of Color',
+      explanation: 'Color alone cannot be the only way to convey information — colorblind and low-vision students need a secondary indicator.',
+      steps: [
+        'Identify every place where color signals meaning: red = wrong, green = correct; color-coded charts; color-highlighted text.',
+        'Add a secondary indicator alongside color: an icon (✓/✗), a pattern, a text label, or an underline.',
+        'For charts: use both color and distinct patterns or direct data labels on each series.',
+        'For inline highlighted text: add an icon or label alongside the color.',
+        'Test by viewing the page with a grayscale filter to confirm meaning is still clear without color.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html'
+    },
+    '1.4.3': {
+      title: 'Contrast (Minimum)',
+      explanation: 'Text must have a contrast ratio of at least 4.5:1 against its background (3:1 for large text ≥18pt or 14pt bold) so low-vision students can read it.',
+      steps: [
+        'Use the WebAIM Contrast Checker at webaim.org/resources/contrastchecker/ to test your color pairs.',
+        'Body text must achieve a 4.5:1 contrast ratio against its background.',
+        'Large text (18pt+ regular or 14pt+ bold) needs a minimum 3:1 ratio.',
+        'Common failures: light gray on white, gold/yellow on white, light text on medium-colored backgrounds.',
+        'Replace non-compliant color combinations with accessible alternatives.',
+        'In Brightspace: remove inline color styles and use the default accessible theme instead.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html'
+    },
+    '1.4.4': {
+      title: 'Resize Text',
+      explanation: 'Text must remain readable and functional when resized up to 200% without loss of content or functionality.',
+      steps: [
+        'Use relative font size units (em, rem, %) in CSS instead of fixed pixel sizes.',
+        'Test the page at 200% browser zoom and check that text does not overflow, overlap, or disappear.',
+        'Ensure containers holding text can expand vertically to accommodate larger text sizes.',
+        'Do not use images of text for content that can be rendered as real text.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html'
+    },
+    '1.4.5': {
+      title: 'Images of Text',
+      explanation: 'Avoid using images of text for content — real HTML text is resizable, selectable, and translatable; image text is not.',
+      steps: [
+        'Identify screenshots of text, slide images, or scanned documents used as content.',
+        'Replace image text with real HTML text wherever possible.',
+        'If the image is required for layout, provide the full text in the alt attribute.',
+        'For scanned PDFs: run OCR to create a searchable, readable text layer.',
+        'Logos and wordmarks are exempt, but all body and instructional text is not.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text.html'
+    },
+    '2.1.1': {
+      title: 'Keyboard',
+      explanation: 'All functionality must be operable by keyboard alone — some students cannot use a mouse.',
+      steps: [
+        'Tab through all interactive elements (links, buttons, forms, menus) using only the keyboard.',
+        'Every interactive element must receive visible focus and be activatable with Enter or Space.',
+        'Custom components (accordions, tabs, carousels) must follow ARIA keyboard interaction patterns.',
+        'In Storyline: verify all clickable objects appear in the Focus Order panel.',
+        'Remove any mouse-only event handlers that have no keyboard equivalent.',
+        'Ensure drag-and-drop activities also offer a keyboard-operable alternative.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html'
+    },
+    '2.1.2': {
+      title: 'No Keyboard Trap',
+      explanation: 'If a user tabs into a component, they must be able to tab back out using standard keys.',
+      steps: [
+        'Tab into every interactive widget and verify you can exit with Tab, Shift+Tab, or Escape.',
+        'Modal dialogs should trap focus intentionally while open — but must close and release focus on Escape.',
+        'Custom rich-text editors and embedded iframes are common sources of keyboard traps — test each one.',
+        'If a non-standard key is needed to exit, document it clearly for users.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html'
+    },
+    '2.4.2': {
+      title: 'Page Titled',
+      explanation: 'Each page or screen must have a descriptive title that identifies its topic or purpose.',
+      steps: [
+        'Set a unique, descriptive <title> element on every HTML page.',
+        'Format: "Content Name — Course Name" or "Module Title | Site Name."',
+        'Avoid generic titles like "Page 1" or "Untitled" that give no context.',
+        'In Brightspace: edit the page title in the page properties, not just the visible H1.',
+        'In Storyline: set the slide title in the Slide Properties panel — it becomes the accessible page title.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/page-titled.html'
+    },
+    '2.4.3': {
+      title: 'Focus Order',
+      explanation: 'Keyboard focus must move through the page in a logical order that preserves meaning and usability.',
+      steps: [
+        'Tab through the entire page or slide and note if focus jumps to unexpected locations.',
+        'Fix the DOM source order so it matches the visual reading order.',
+        'In Storyline: use the Focus Order panel (Home > Accessibility > Focus Order) to set the correct tab sequence.',
+        'Ensure modal dialogs trap focus within themselves while open.',
+        'Confirm focus returns to the triggering element after a dialog or overlay closes.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html'
+    },
+    '2.4.4': {
+      title: 'Link Purpose (In Context)',
+      explanation: 'The purpose of each link must be clear from its text or surrounding context — "click here" and "read more" fail because they do not describe where the link goes.',
+      steps: [
+        'Find all links with generic text: "click here," "here," "read more," "learn more," "this link."',
+        'Rewrite link text to describe the destination: "Read the WCAG 2.1 guidelines" or "Download the course syllabus."',
+        'Include the file format when linking to a document: "(PDF)" or "(Word doc)" or "(opens in new tab)."',
+        'For icon-only links or buttons: add an aria-label attribute with a descriptive name.',
+        'Ensure distinct destinations have distinct link text — identical text for different targets is confusing.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html'
+    },
+    '2.4.6': {
+      title: 'Headings and Labels',
+      explanation: 'Headings and form labels must describe the topic or purpose of their section — vague headings like "Introduction" do not help users navigate.',
+      steps: [
+        'Review every heading: does it clearly describe the content of that section?',
+        'Replace generic headings: "Introduction" → "Introduction to Risk Assessment Methods."',
+        'Ensure every form input has a visible label that describes what to enter.',
+        'Do not use heading tags for styling — only use H1–H6 for actual section structure.',
+        'Verify heading hierarchy is logical: H1 → H2 → H3 without skipping levels.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html'
+    },
+    '3.1.1': {
+      title: 'Language of Page',
+      explanation: 'The page\'s primary language must be declared in code so screen readers use the correct pronunciation and language engine.',
+      steps: [
+        'Add a lang attribute to the <html> element: <html lang="en">.',
+        'In Brightspace: check the page source for the lang attribute on the <html> tag.',
+        'Use the correct BCP 47 language tag: "en" for English, "es" for Spanish, "fr" for French.',
+        'In Storyline: set the language in Player Properties > Text Labels > Language.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html'
+    },
+    '3.1.2': {
+      title: 'Language of Parts',
+      explanation: 'When content switches to a different language mid-page, that passage must be tagged with the correct language code.',
+      steps: [
+        'Identify any passages written in a language different from the page\'s primary language.',
+        'Wrap those passages in a span or div with a lang attribute: <span lang="es">Hola</span>.',
+        'This allows screen readers to switch to the correct accent and pronunciation rules.',
+        'Proper nouns and isolated technical terms borrowed from other languages are exempt.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html'
+    },
+    '3.3.1': {
+      title: 'Error Identification',
+      explanation: 'When a form input error is detected, the error must be described in text — not just highlighted in red.',
+      steps: [
+        'Display an error message in text that identifies which field has the error and what is wrong.',
+        'Example: "Email address is required" not just a red border around the field.',
+        'Do not rely on color alone to indicate an error state.',
+        'For quiz or assessment feedback: explain what the correct answer is, not just that the answer was wrong.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html'
+    },
+    '3.3.2': {
+      title: 'Labels or Instructions',
+      explanation: 'Form inputs and interactive activities must have labels or instructions that explain what input is expected.',
+      steps: [
+        'Every input field must have a visible label — not just placeholder text (placeholder disappears on focus).',
+        'Provide instructions before a form or activity, not only after an error occurs.',
+        'Describe required formats: "Enter date as MM/DD/YYYY" or "Password must be 8+ characters."',
+        'In Storyline interactions: add instruction text visible on the slide, not only in a tooltip.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html'
+    },
+    '4.1.1': {
+      title: 'Parsing',
+      explanation: 'HTML must be well-formed with no duplicate IDs, unclosed tags, or invalid nesting — parsing errors cause unpredictable screen reader behavior.',
+      steps: [
+        'Run the page through the W3C HTML Validator at validator.w3.org.',
+        'Fix any duplicate ID attributes — every ID must be unique on the page.',
+        'Close all open tags properly and ensure correct nesting (no block elements inside inline elements).',
+        'In Brightspace: use the Source Editor to clean up HTML pasted from Word or PowerPoint.',
+        'Re-validate after fixing until no errors remain.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/parsing.html'
+    },
+    '4.1.2': {
+      title: 'Name, Role, Value',
+      explanation: 'All UI components must have an accessible name, role, and state that assistive technology can read and announce.',
+      steps: [
+        'Every form input must have a visible <label> or an aria-label / aria-labelledby attribute.',
+        'Custom interactive components (tabs, accordions, sliders) must use appropriate ARIA roles.',
+        'Buttons must have descriptive text or an aria-label — avoid icon-only buttons without labels.',
+        'Dynamic content changes must be announced via aria-live regions.',
+        'In Storyline: add accessible names to all objects in the Accessibility panel (right-click > Accessibility).'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html'
+    },
+    '4.1.3': {
+      title: 'Status Messages',
+      explanation: 'Status messages (e.g., "Form submitted," "3 errors found") must be programmatically determinable so screen readers announce them without requiring focus.',
+      steps: [
+        'Wrap status messages in an element with role="status" (for non-urgent messages) or role="alert" (for errors).',
+        'Do not require users to navigate to the message — it should be announced automatically.',
+        'Test with a screen reader: trigger the status message and confirm it is announced without moving focus.',
+        'Avoid using alert() dialogs as a substitute for accessible status regions.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html'
+    },
+    '1.3.4': {
+      title: 'Orientation',
+      explanation: 'Content must not be restricted to a single display orientation (portrait or landscape) unless that orientation is essential.',
+      steps: [
+        'Do not use CSS or JavaScript to lock the viewport to portrait or landscape only.',
+        'Test the content by rotating the device and confirming all features remain accessible.',
+        'If a specific orientation is truly essential (e.g., a piano keyboard), document the reason clearly for students.',
+        'In Storyline: publish with responsive player settings and do not force a fixed canvas orientation.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/orientation.html'
+    },
+    '1.4.10': {
+      title: 'Reflow',
+      explanation: 'Content must be readable and functional at 400% zoom (320 CSS pixels wide) without requiring horizontal scrolling.',
+      steps: [
+        'Test the page at 400% browser zoom on a desktop browser (simulates a 320px-wide viewport).',
+        'Ensure text reflows into a single column and no content is clipped or lost.',
+        'Replace fixed-width containers with flexible layouts (max-width + 100% width).',
+        'Avoid horizontal scroll for reading content — scrolling is only acceptable for maps, diagrams, or data tables.',
+        'In Brightspace: avoid using fixed-pixel table widths for layout purposes.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/reflow.html'
+    },
+    '2.2.1': {
+      title: 'Timing Adjustable',
+      explanation: 'If content has a time limit, students must be able to turn it off, adjust it, or extend it.',
+      steps: [
+        'Identify any timed elements: session timeouts, auto-advancing slides, timed quizzes.',
+        'Provide a way to turn the time limit off, or extend it to at least 10× the default.',
+        'Warn students before time expires and give at least 20 seconds to request more time.',
+        'In Storyline: if using slide timers, add a visible pause control or remove the forced advancement.',
+        'For timed LMS quizzes: contact your LMS administrator to enable time extension accommodations.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html'
+    },
+    '2.2.2': {
+      title: 'Pause, Stop, Hide',
+      explanation: 'Any moving, blinking, or auto-updating content that lasts more than 5 seconds must have a pause, stop, or hide control.',
+      steps: [
+        'Identify all animations, carousels, scrolling text, blinking elements, and auto-playing videos.',
+        'Add a visible pause or stop button for any animation that lasts more than 5 seconds.',
+        'Avoid auto-playing video or audio — always require a user action to start playback.',
+        'In Storyline: animations on timeline should be controlled by the slide player controls or a dedicated pause button.',
+        'In Rise: disable autoplay on any embedded media blocks.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html'
+    },
+    '2.4.1': {
+      title: 'Bypass Blocks',
+      explanation: 'Pages with repeated navigation must provide a way for keyboard users to skip directly to the main content.',
+      steps: [
+        'Add a "Skip to main content" link as the very first focusable element on the page.',
+        'The link can be visually hidden but must become visible on keyboard focus.',
+        'The target of the skip link must be the main content area (use id="main-content" on the container).',
+        'In Brightspace: add a skip link to the page header template — this is typically a platform-level setting.',
+        'In Storyline: the built-in player already provides slide navigation; verify the focus order skips repetitive chrome.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html'
+    },
+    '2.5.1': {
+      title: 'Pointer Gestures',
+      explanation: 'All functionality that uses multi-point or path-based gestures (pinch, swipe, drag) must also be operable with a single pointer.',
+      steps: [
+        'Identify any swipe carousels, drag-and-drop activities, pinch-to-zoom controls, or drawing tools.',
+        'Provide single-tap/click alternatives for all multi-touch gestures: arrow buttons for carousels, keyboard alternatives for drag-and-drop.',
+        'In Storyline: drag-and-drop interactions must have a click-based alternative or keyboard shortcut.',
+        'Do not rely on device-specific gestures for core functionality — they exclude users with motor disabilities using switch access or keyboards.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures.html'
+    },
+    '3.2.1': {
+      title: 'On Focus',
+      explanation: 'Moving focus to a component must not trigger an unexpected context change such as submitting a form or opening a new window.',
+      steps: [
+        'Review all interactive elements: does tabbing to any element trigger a navigation, form submission, or modal automatically?',
+        'Remove any JavaScript focus handlers that cause page changes without a user-initiated action (click or keypress).',
+        'Context changes (navigation, dialogs, form submission) should only occur when the user explicitly activates a control.',
+        'Test by tabbing through the entire page and noting any unexpected jumps or changes.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/on-focus.html'
+    },
+    '3.2.2': {
+      title: 'On Input',
+      explanation: 'Changing the value of a form control must not automatically cause an unexpected context change.',
+      steps: [
+        'Do not use onChange events to automatically submit a form or navigate to a new page.',
+        'If a select dropdown changes content elsewhere on the page, warn users in advance or require an explicit "Go" button.',
+        'Radio buttons and checkboxes should not trigger navigation or major content changes when selected.',
+        'Add a submit button for any form that acts on input — do not rely on automatic triggering.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/on-input.html'
+    },
+    '3.2.4': {
+      title: 'Consistent Identification',
+      explanation: 'Components with the same function across multiple pages must be identified consistently — same label, same icon, same accessible name.',
+      steps: [
+        'Audit navigation menus, buttons, and icons that appear on multiple pages or slides.',
+        'Ensure the accessible name (visible label or aria-label) is identical for the same control wherever it appears.',
+        'Do not use "Next" on one page and "Continue" on another for the same action.',
+        'Icons used as controls must have consistent alt text or aria-labels across all instances.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/consistent-identification.html'
+    },
+    '3.3.3': {
+      title: 'Error Suggestion',
+      explanation: 'When an input error is detected and suggestions for correction are known, the suggestion must be provided to help the user fix it.',
+      steps: [
+        'For format errors: tell the user the correct format — "Enter date as MM/DD/YYYY" not just "Invalid date."',
+        'For out-of-range values: state the allowed range — "Enter a number between 1 and 100."',
+        'For required fields: identify which field is missing and what is needed.',
+        'Place error suggestions adjacent to the input field, not only in a summary at the top of the page.',
+        'For quiz feedback: explain what the correct answer is and why, not just "Incorrect."'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion.html'
+    },
+    '3.3.4': {
+      title: 'Error Prevention (Legal, Financial, Data)',
+      explanation: 'For transactions with significant consequences, users must be able to review, confirm, or reverse their submissions.',
+      steps: [
+        'Before final submission of consequential forms, provide a review/confirmation screen.',
+        'Allow users to correct information before confirming.',
+        'For irreversible actions: add a confirmation dialog ("Are you sure?") with a clear description of what will happen.',
+        'For quiz submissions: where the LMS allows, let students review answers before final submission.',
+        'Log errors on the server side so submissions with detected errors can be identified and corrected.'
+      ],
+      resource: 'https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-legal-financial-data.html'
+    }
+  };
+
+  // Attach remediation guidance panels to each flagged violation and warning item.
+  function attachGuidance(container) {
+    var items = container.querySelectorAll('ul.violations li, ul.warnings li, ul.fixes li');
+    items.forEach(function (li) {
+      var text = li.textContent || '';
+      // Match WCAG criterion numbers like 1.1.1, 2.4.4, etc.
+      var matches = text.match(/\b(\d\.\d+\.\d+)\b/g);
+      if (!matches) return;
+      var seen = {};
+      matches.forEach(function (criterion) {
+        if (seen[criterion]) return;
+        seen[criterion] = true;
+        var g = WCAG_GUIDANCE[criterion];
+        if (!g) return;
+        var stepsHtml = g.steps.map(function (s) {
+          return '<li>' + s + '</li>';
+        }).join('');
+        var details = document.createElement('details');
+        details.className = 'guidance-details';
+        details.innerHTML =
+          '<summary>&#9432; Guidance: ' + criterion + ' ' + g.title + '</summary>' +
+          '<div class="guidance-body">' +
+            '<p class="guidance-what">' + g.explanation + '</p>' +
+            '<ol class="guidance-steps">' + stepsHtml + '</ol>' +
+            '<a class="guidance-link" href="' + g.resource + '" target="_blank" rel="noopener noreferrer">' +
+              '&#8599; WCAG 2.1 Understanding ' + criterion +
+            '</a>' +
+          '</div>';
+        li.appendChild(details);
+      });
     });
   }
 
@@ -988,6 +2203,15 @@ input[type="text"]:focus {
     el('report-meta').innerHTML = meta;
     el('scorecard').innerHTML = buildScorecard(markdown);
     el('report-content').innerHTML = mdToHtml(markdown);
+    // afterbegin prepends each insertion, so insert in reverse display order:
+    // PDF summary inserted first (sits below), SCORM banner inserted last (sits on top).
+    if (state.pdfStructure) {
+      el('report-content').insertAdjacentHTML('afterbegin', renderPdfStructureSummary(state.pdfStructure));
+    }
+    if (state.scormInfo) {
+      el('report-content').insertAdjacentHTML('afterbegin', renderScormBanner(state.scormInfo));
+    }
+    attachGuidance(el('report-content'));
     el('topbar-label').textContent = 'Report Ready';
     showScreen('report');
   }
@@ -1021,10 +2245,13 @@ input[type="text"]:focus {
 
   function restart() {
     state.content = '';
+    state.pdfStructure = null;
+    state.scormInfo = null;
     el('content-input').value = '';
     el('course-name').value = '';
     el('content-title').value = '';
     el('file-selected').style.display = 'none';
+    el('btn-submit').disabled = false;
     el('topbar-label').textContent = 'WCAG 2.1 AA';
     showScreen('intake');
   }
