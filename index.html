@@ -731,11 +731,11 @@ input[type="text"]:focus {
   var MAX_CHARS = 60000; // ~15k tokens, safe buffer under 200k limit with system prompt
 
   function handleFile(file) {
-    // Size check: warn if file is likely too large (over 200KB is a risk)
-    if (file.size > 200000) {
+    // Size check: warn if file is likely too large (over 50MB is a risk)
+    if (file.size > 52428800) {
       var fileEl = el('file-selected');
       fileEl.style.color = '#C0392B';
-      fileEl.textContent = '\u26a0 File too large (' + Math.round(file.size / 1024) + 'KB). Please copy and paste the text content instead using the "Paste content" tab.';
+      fileEl.textContent = '\u26a0 File too large (' + Math.round(file.size / 1024) + 'KB). Maximum file size is 50MB. Please copy and paste the text content instead using the "Paste content" tab.';
       fileEl.style.display = 'block';
       state.content = '';
       return;
